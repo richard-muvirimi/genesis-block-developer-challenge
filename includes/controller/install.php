@@ -25,3 +25,9 @@ $query =  strtr($query, $tokens);
 database_exec($query);
 
 echo "Application installed";
+
+?>
+
+<div>
+    <a href="<?php echo environment_get("app.url") ?>">Home</a>
+</div>
