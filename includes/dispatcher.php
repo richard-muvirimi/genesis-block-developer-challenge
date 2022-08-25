@@ -9,13 +9,9 @@ declare(strict_types=1);
  */
 
 try {
-    if (isset($_SERVER["PATH_INFO"])) {
-        $route = $_SERVER["PATH_INFO"];
-    } else {
-        $route =  null;
-    }
+    $route = $_SERVER["REQUEST_URI"];
 
-    if ($route != null) {
+    if (php_sapi_name() != "cli") {
         $route = normalize_route($route);
 
         switch ($route) {

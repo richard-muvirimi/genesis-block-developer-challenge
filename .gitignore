@@ -7,3 +7,4 @@ ui/build
 .composer_compiled_assets
 .env
 .phpunit.result.cache
+rsync.sh

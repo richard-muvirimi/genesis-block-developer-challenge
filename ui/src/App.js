@@ -56,8 +56,10 @@ export default class App extends Component {
     render() {
         return (
             <Suspense fallback={<Splash />}>
-                <Fragment sx={{ backgroundColor: "grey" }}>
-                    <this.mainScreen setToken={this.setToken} key={this.state.token} token={this.state.token} showMessage={this.showMessage} clearMessage={this.clearMessage} />
+                <Fragment>
+                    <Box sx={{ backgroundColor: "grey" }}>
+                        <this.mainScreen setToken={this.setToken} key={this.state.token} token={this.state.token} showMessage={this.showMessage} clearMessage={this.clearMessage} />
+                    </Box>
                     <Snackbar open={this.state.alertMessage.length != 0} onClose={this.clearMessage} autoHideDuration={5000}>
                         <Alert severity={this.state.alertType} onClose={this.clearMessage} >
                             <AlertTitle>Message</AlertTitle>

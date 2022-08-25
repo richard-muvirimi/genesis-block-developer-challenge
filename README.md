@@ -8,6 +8,7 @@ This is a developer challenge project for a Full-Stack PHP developer for Genesis
 2. Minimum PHP version is 7.2 (Enforced by `inpsyde/composer-assets-compiler`)
 3. Any Front-End framework could be used so opted for React and MUI
 4. Detailed project requirements can be found [here]("./Genesis - PHP Developer Dev Test.pdf")
+5. Session token is saved in the browsers `sessionStorage`
 
 ## Setting Up
 

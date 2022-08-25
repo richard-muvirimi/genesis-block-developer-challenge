@@ -22,5 +22,7 @@ declare(strict_types=1);
  */
 function normalize_route(?string $route):string
 {
-    return strtolower(trim($route ?? "", "\\/"));
+    $route = basename($route ?? "");
+
+    return strtolower(trim($route, "\\/"));
 }

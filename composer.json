@@ -6,6 +6,8 @@
     "minimum-stability": "stable",
     "require": {
         "php": ">=7.2",
+        "ext-pdo_mysql": "*",
+        "ext-json": "*",
         "symfony/polyfill-php71": "*",
         "symfony/polyfill-php72": "*",
         "symfony/polyfill-php73": "*",

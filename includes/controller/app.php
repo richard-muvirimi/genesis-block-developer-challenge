@@ -31,6 +31,13 @@ declare(strict_types=1);
   <noscript>You need to enable JavaScript to run this site</noscript>
   <div id="root" ></div>
 
+  <script>
+    window.appEnvironment = {
+        graphqlUrl: "<?php echo $url ?>/graphql",
+        basename: "<?php echo basename($url) ?>"
+    };
+  </script>
+
   <script src="<?php echo $url ?>/ui/build/main.js" type="text/javascript" ></script>
 
 </body>
