@@ -20,7 +20,7 @@ $userType = new ObjectType([
         return[
             'id'      => [
                 'type'    => Type::id(),
-                'resolve' => fn (array $row): int => $row["id"] ?? 0,
+                'resolve' => fn (array $row): int => intval($row["id"] ?? 0),
             ],
             'email'  => [
                 'type'    => Type::string(),
@@ -28,11 +28,11 @@ $userType = new ObjectType([
             ],
             'created' => [
                 'type'    => Type::string(),
-                'resolve' => fn (array $row): string => $row["created"] ?? 0,
+                'resolve' => fn (array $row): string => $row["created"] ?? "",
             ],
             'updated' => [
                 'type'    => Type::string(),
-                'resolve' => fn (array $row): string => $row["updated"] ?? 0,
+                'resolve' => fn (array $row): string => $row["updated"] ?? "",
             ],
         ];
     },
@@ -42,10 +42,10 @@ $statusType = new EnumType([
     'name'        => 'Status',
     'description' => 'Task Status',
     'values'      => array_combine(
-        array_map(function ($status):string {
+        array_map(function (int $status):string {
             return 'STATUS_' . strtoupper(task_status_name($status));
         }, TASK_STATUSES),
-        array_map(function ($status) {
+        array_map(function (int $status):array {
             return ['value' => $status, 'description' => task_status_name($status)];
         }, TASK_STATUSES)
     ),
@@ -55,10 +55,10 @@ $priorityType = new EnumType([
     'name'        => 'Priority',
     'description' => 'Task Priority',
     'values'      => array_combine(
-        array_map(function ($priority):string {
+        array_map(function (int $priority):string {
             return 'PRIORITY_' . strtoupper(task_priority_name($priority));
         }, TASK_PRIORITIES),
-        array_map(function ($priority):array {
+        array_map(function (int $priority):array {
             return ['value' => $priority, 'description' => task_priority_name($priority)];
         }, TASK_PRIORITIES)
     ),
@@ -66,15 +66,15 @@ $priorityType = new EnumType([
 
 $taskType = new ObjectType([
     'name'   => 'Task',
-    'fields' => function () use ($userType, $statusType, $priorityType):array {
+    'fields' => function () use ($userType, $statusType, &$priorityType):array {
         return[
             'id'      => [
                 'type'    => Type::id(),
-                'resolve' => fn (array $row): int => $row["id"] ?? 0,
+                'resolve' => fn (array $row): int => intval($row["id"] ?? 0),
             ],
             'user' => [
                 'type'    => $userType,
-                'resolve' => fn (array $row): array => user_fetch_id($row['user']),
+                'resolve' => fn (array $row): array => user_fetch_id(intval($row['user'] ?? 0)),
             ],
             'title'     => [
                 'type'    => Type::string(),
@@ -86,19 +86,19 @@ $taskType = new ObjectType([
             ],
             'status' => [
                 'type'    => $statusType,
-                'resolve' => fn (array $row): int => $row["status"] ?? "",
+                'resolve' => fn (array $row): int => intval($row["status"] ?? STATUS_OPEN),
             ],
             'priority' => [
                 'type'    => $priorityType,
-                'resolve' => fn (array $row): int => $row["priority"] ?? "",
+                'resolve' => fn (array $row): int => intval($row["priority"] ?? PRIORITY_MEDIUM),
             ],
             'created' => [
                 'type'    => Type::string(),
-                'resolve' => fn (array $row): string => $row["created"] ?? 0,
+                'resolve' => fn (array $row): string => $row["created"] ?? "",
             ],
             'updated' => [
                 'type'    => Type::string(),
-                'resolve' => fn (array $row): string => $row["updated"] ?? 0,
+                'resolve' => fn (array $row): string => $row["updated"] ?? "",
             ],
         ];
     },
