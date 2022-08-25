@@ -1,0 +1,9 @@
+*.lock
+vendor
+node_modules
+*.log
+ui/build
+*.code-workspace
+.composer_compiled_assets
+.env
+.phpunit.result.cache

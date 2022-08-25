@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<ruleset name="Genesis Block Developer Challenge" namespace="App\">
+    <description>Coding Standards for Genesis Block Developer Challenge and Php 7.2</description>
+
+    <config name="testVersion" value="7.2-"/>
+    <arg name="extensions" value="php"/>
+
+    <exclude-pattern>*/vendor/*</exclude-pattern>
+    <exclude-pattern>*/tests/*</exclude-pattern>
+
+    <rule ref="PSR2"/>
+    <rule ref="PHPCompatibility"/>
+
+</ruleset>
