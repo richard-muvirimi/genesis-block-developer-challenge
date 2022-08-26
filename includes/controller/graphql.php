@@ -20,19 +20,27 @@ $userType = new ObjectType([
         return[
             'id'      => [
                 'type'    => Type::id(),
-                'resolve' => fn (array $row): int => intval($row["id"] ?? 0),
+                'resolve' => function (array $row): int {
+                    return intval($row["id"] ?? 0);
+                },
             ],
             'email'  => [
                 'type'    => Type::string(),
-                'resolve' => fn (array $row): string => $row["email"] ?? "",
+                'resolve' => function (array $row): string {
+                    return $row["email"] ?? "";
+                },
             ],
             'created' => [
                 'type'    => Type::string(),
-                'resolve' => fn (array $row): string => $row["created"] ?? "",
+                'resolve' => function (array $row): string {
+                    return $row["created"] ?? "";
+                },
             ],
             'updated' => [
                 'type'    => Type::string(),
-                'resolve' => fn (array $row): string => $row["updated"] ?? "",
+                'resolve' => function (array $row): string {
+                    return $row["updated"] ?? "";
+                },
             ],
         ];
     },
@@ -70,35 +78,51 @@ $taskType = new ObjectType([
         return[
             'id'      => [
                 'type'    => Type::id(),
-                'resolve' => fn (array $row): int => intval($row["id"] ?? 0),
+                'resolve' => function (array $row): int {
+                    return intval($row["id"] ?? 0);
+                },
             ],
             'user' => [
                 'type'    => $userType,
-                'resolve' => fn (array $row): array => user_fetch_id(intval($row['user'] ?? 0)),
+                'resolve' => function (array $row): array {
+                    return user_fetch_id(intval($row['user'] ?? 0));
+                },
             ],
             'title'     => [
                 'type'    => Type::string(),
-                'resolve' => fn (array $row): string => $row["title"] ?? '',
+                'resolve' => function (array $row): string {
+                    return $row["title"] ?? '';
+                },
             ],
             'description'   => [
                 'type'    => Type::string(),
-                'resolve' => fn (array $row):string =>$row["description"] ?? '',
+                'resolve' => function (array $row):string {
+                    return$row["description"] ?? '';
+                },
             ],
             'status' => [
                 'type'    => $statusType,
-                'resolve' => fn (array $row): int => intval($row["status"] ?? STATUS_OPEN),
+                'resolve' => function (array $row): int {
+                    return intval($row["status"] ?? STATUS_OPEN);
+                },
             ],
             'priority' => [
                 'type'    => $priorityType,
-                'resolve' => fn (array $row): int => intval($row["priority"] ?? PRIORITY_MEDIUM),
+                'resolve' => function (array $row): int {
+                    return intval($row["priority"] ?? PRIORITY_MEDIUM);
+                },
             ],
             'created' => [
                 'type'    => Type::string(),
-                'resolve' => fn (array $row): string => $row["created"] ?? "",
+                'resolve' => function (array $row): string {
+                    return $row["created"] ?? "";
+                },
             ],
             'updated' => [
                 'type'    => Type::string(),
-                'resolve' => fn (array $row): string => $row["updated"] ?? "",
+                'resolve' => function (array $row): string {
+                    return $row["updated"] ?? "";
+                },
             ],
         ];
     },
