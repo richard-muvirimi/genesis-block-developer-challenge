@@ -9,7 +9,7 @@ declare(strict_types=1);
  */
 
 try {
-    $route = $_SERVER["REQUEST_URI"];
+    $route = $_SERVER["REQUEST_URI"] ?? "";
 
     if (php_sapi_name() != "cli") {
         $route = normalize_route($route);
